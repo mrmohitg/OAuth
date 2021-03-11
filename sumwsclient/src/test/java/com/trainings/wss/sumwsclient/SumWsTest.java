@@ -32,10 +32,14 @@ public class SumWsTest {
 			Endpoint endpoint = client.getEndpoint();
 
 			HashMap<String, Object> outProps = new HashMap<>();
-			outProps.put(WSHandlerConstants.ACTION, "UsernameToken");
+			outProps.put(WSHandlerConstants.ACTION, "UsernameToken Encrypt");
 			outProps.put(WSHandlerConstants.USER, "sumuser");
 			outProps.put(WSHandlerConstants.PASSWORD_TYPE, WSConstants.PW_TEXT);
 			outProps.put(WSHandlerConstants.PW_CALLBACK_CLASS, PasswordCallbackHandler.class.getName());
+			
+			outProps.put(WSHandlerConstants.ENCRYPTION_USER, "myservicekey");
+			outProps.put(WSHandlerConstants.ENC_PROP_FILE, "etc/clientKeystore.properties");
+			
 			WSS4JOutInterceptor wssOut = new WSS4JOutInterceptor(outProps);
 			endpoint.getOutInterceptors().add(wssOut);
 
