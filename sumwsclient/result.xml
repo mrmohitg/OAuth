@@ -22,3 +22,80 @@
 		</ns2:calculateSum>
 	</soap:Body>
 </soap:Envelope>
+
+<soap:Envelope
+	xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<wsse:Security
+			xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+			soap:mustUnderstand="1">
+			<xenc:EncryptedKey
+				xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+				Id="EK-8c1801a0-c164-4023-bf6b-3e67e8a03841">
+				<xenc:EncryptionMethod
+					Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p" />
+				<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+					<wsse:SecurityTokenReference>
+						<ds:X509Data>
+							<ds:X509IssuerSerial>
+								<ds:X509IssuerName>CN=Mohit</ds:X509IssuerName>
+								<ds:X509SerialNumber>942029681</ds:X509SerialNumber>
+							</ds:X509IssuerSerial>
+						</ds:X509Data>
+					</wsse:SecurityTokenReference>
+				</ds:KeyInfo>
+				<xenc:CipherData>
+					<xenc:CipherValue>JC6blO11+onzCi+DL4w0VnX4xfxJB1Lv0dSDWtPYFqYZ8EWGzMH5btyNQPxSyVtSkYNbpDgQb/0Qu59YHwNn54b7B6YvB6tww0gTNpUBczs5QG/nW3rFbsJfNy04d/0OITAtCN+CweQqjKOXwlnisfLyfe7gEuLnj0fAwdge7d3bo7j2hOVWLlMqMOoRSbXDh7Uc9r0mjeLtCLpjsca09Z1WsCddBXZk4cyYk1NxSmLIFUWZ6msX6FNZNhelp/uZvWVqPrsWvoukjCyaTr+Gqcg9o0g34cCfP7dauGjzvPvi3S4BLJVR3WETrBC7EtIPZW7xC38myw9IzTZeoJ9R1A==
+					</xenc:CipherValue>
+				</xenc:CipherData>
+				<xenc:ReferenceList>
+					<xenc:DataReference
+						URI="#ED-eaa1fad8-8186-489f-a449-26469642d182" />
+				</xenc:ReferenceList>
+			</xenc:EncryptedKey>
+			<wsse:UsernameToken
+				wsu:Id="UsernameToken-62272118-881b-4730-9ac5-4ad1beb15475">
+				<wsse:Username>sumuser</wsse:Username>
+				<wsse:Password
+					Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">sumpass</wsse:Password>
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</soap:Header>
+	<soap:Body>
+		<xenc:EncryptedData
+			xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+			Id="ED-eaa1fad8-8186-489f-a449-26469642d182"
+			Type="http://www.w3.org/2001/04/xmlenc#Content">
+			<xenc:EncryptionMethod
+				Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc" />
+			<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+				<wsse:SecurityTokenReference
+					xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+					xmlns:wsse11="http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.1.xsd"
+					wsse11:TokenType="http://docs.oasis-open.org/wss/oasis-wss-soap-message-security-1.1#EncryptedKey">
+					<wsse:Reference
+						URI="#EK-8c1801a0-c164-4023-bf6b-3e67e8a03841" />
+				</wsse:SecurityTokenReference>
+			</ds:KeyInfo>
+			<xenc:CipherData>
+				<xenc:CipherValue>ufOFrOpns+I3QmUDkFRQv/Q8gMv2d7NH3TeD8B3ByaXYvWdwbNCtguQ6vdxXwhODYkwPZvlgCj1zGqHYaGA2mBgKhQiz9iGwlLzHkoQDWk/xXgCJziPxWAstYIov+/DTUMU5XUUZgku4BOYl/WB48znZirFMAqEQP3nEfM19oJI=
+				</xenc:CipherValue>
+			</xenc:CipherData>
+		</xenc:EncryptedData>
+	</soap:Body>
+</soap:Envelope>
+
+Payload:
+<soap:Envelope
+	xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Body>
+		<ns2:calculateSumResponse
+			xmlns:ns2="http://ws.sumws/">
+			<response>
+				<result>30</result>
+			</response>
+		</ns2:calculateSumResponse>
+	</soap:Body>
+</soap:Envelope>
+

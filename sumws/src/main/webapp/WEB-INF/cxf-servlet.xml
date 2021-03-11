@@ -16,9 +16,10 @@
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
 			<constructor-arg>
 				<map>
-					<entry key="action" value="UsernameToken"></entry>
+					<entry key="action" value="UsernameToken Encrypt"></entry>
 					<entry key="passwordType" value="PasswordText"></entry>
 					<entry key="passwordCallbackRef" value-ref="myPasswordCallback"></entry>
+					<entry key="decryptionPropFile" value="etc/serviceKeystore.properties"></entry>
 				</map> 
 			</constructor-arg>
 			</bean>

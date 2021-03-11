@@ -17,6 +17,7 @@ public class PasswordCallbackHandler implements CallbackHandler {
 	public PasswordCallbackHandler() {
 		super();
 		passwords.put("sumuser", "sumpass");
+		passwords.put("myclientkey", "ckpass");
 	}
 
 	@Override
