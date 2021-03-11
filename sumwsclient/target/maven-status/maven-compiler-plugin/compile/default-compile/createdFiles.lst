@@ -1,0 +1,9 @@
+sumws\ws\SumRequest.class
+sumws\ws\ObjectFactory.class
+sumws\ws\SumResponse.class
+sumws\ws\CalculateSum.class
+sumws\ws\SumWs.class
+com\trainings\wss\sumwsclient\App.class
+sumws\ws\CalculateSumResponse.class
+sumws\ws\package-info.class
+sumws\ws\SumWSService.class
