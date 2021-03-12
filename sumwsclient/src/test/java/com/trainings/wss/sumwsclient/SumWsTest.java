@@ -48,9 +48,10 @@ public class SumWsTest {
 			endpoint.getOutInterceptors().add(wssOut);
 			
 			HashMap<String, Object> inProps = new HashMap<>();
-			inProps.put(WSHandlerConstants.ACTION, "Encrypt");
+			inProps.put(WSHandlerConstants.ACTION, "Encrypt Signature");
 			inProps.put(WSHandlerConstants.DEC_PROP_FILE, "etc/clientKeystore.properties");
 			inProps.put(WSHandlerConstants.PW_CALLBACK_CLASS, PasswordCallbackHandler.class.getName());
+			inProps.put(WSHandlerConstants.SIG_PROP_FILE, "etc/clientKeystore.properties");
 			
 			WSS4JInInterceptor wssIn = new WSS4JInInterceptor(inProps);
 			endpoint.getInInterceptors().add(wssIn);

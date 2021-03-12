@@ -30,10 +30,12 @@
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
 			<constructor-arg>
 				<map>
-					<entry key="action" value="Encrypt"></entry>
+					<entry key="action" value="Encrypt Signature"></entry>
 					<entry key="passwordCallbackRef" value-ref="myPasswordCallback"></entry>
 					<entry key="encryptionPropFile" value="etc/serviceKeystore.properties"></entry>
 					<entry key="encryptionUser" value="myclientkey"></entry>
+					<entry key="signaturePropFile" value="etc/serviceKeystore.properties"></entry>
+					<entry key="signatureUser" value="myservicekey"></entry>
 				</map> 
 			</constructor-arg>
 			</bean>
