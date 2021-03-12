@@ -10,6 +10,7 @@ import java.util.HashMap;
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.endpoint.Endpoint;
 import org.apache.cxf.frontend.ClientProxy;
+import org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor;
 import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
 import org.apache.wss4j.dom.WSConstants;
 import org.apache.wss4j.dom.handler.WSHandlerConstants;
@@ -42,6 +43,14 @@ public class SumWsTest {
 			
 			WSS4JOutInterceptor wssOut = new WSS4JOutInterceptor(outProps);
 			endpoint.getOutInterceptors().add(wssOut);
+			
+			HashMap<String, Object> inProps = new HashMap<>();
+			inProps.put(WSHandlerConstants.ACTION, "Encrypt");
+			inProps.put(WSHandlerConstants.DEC_PROP_FILE, "etc/clientKeystore.properties");
+			inProps.put(WSHandlerConstants.PW_CALLBACK_CLASS, PasswordCallbackHandler.class.getName());
+			
+			WSS4JInInterceptor wssIn = new WSS4JInInterceptor(inProps);
+			endpoint.getInInterceptors().add(wssIn);
 
 			SumRequest request = new SumRequest();
 			request.setNum1(10);
