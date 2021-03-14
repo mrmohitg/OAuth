@@ -33,28 +33,29 @@ public class SumWsTest {
 			Endpoint endpoint = client.getEndpoint();
 
 			HashMap<String, Object> outProps = new HashMap<>();
-			outProps.put(WSHandlerConstants.ACTION, "UsernameToken Encrypt Signature Timestamp");
+			outProps.put(WSHandlerConstants.ACTION, "UsernameToken Signature Encrypt Timestamp");
 			outProps.put(WSHandlerConstants.USER, "sumuser");
 			outProps.put(WSHandlerConstants.PASSWORD_TYPE, WSConstants.PW_TEXT);
 			outProps.put(WSHandlerConstants.PW_CALLBACK_CLASS, PasswordCallbackHandler.class.getName());
-			
+
 			outProps.put(WSHandlerConstants.ENCRYPTION_USER, "myservicekey");
 			outProps.put(WSHandlerConstants.ENC_PROP_FILE, "etc/clientKeystore.properties");
-			
+			outProps.put(WSHandlerConstants.ENCRYPTION_PARTS,
+					"{Element}{http://www.w3.org/2000/09/xmldsig#}Signature;{Content}{http://schemas.xmlsoap.org/soap/envelope/}Body");
 			outProps.put(WSHandlerConstants.SIGNATURE_USER, "myclientkey");
 			outProps.put(WSHandlerConstants.SIG_PROP_FILE, "etc/clientKeystore.properties");
-			
+
 			outProps.put("timeToLive", "30");
-			
+
 			WSS4JOutInterceptor wssOut = new WSS4JOutInterceptor(outProps);
 			endpoint.getOutInterceptors().add(wssOut);
-			
+
 			HashMap<String, Object> inProps = new HashMap<>();
 			inProps.put(WSHandlerConstants.ACTION, "Encrypt Signature Timestamp");
 			inProps.put(WSHandlerConstants.DEC_PROP_FILE, "etc/clientKeystore.properties");
 			inProps.put(WSHandlerConstants.PW_CALLBACK_CLASS, PasswordCallbackHandler.class.getName());
 			inProps.put(WSHandlerConstants.SIG_PROP_FILE, "etc/clientKeystore.properties");
-			
+
 			WSS4JInInterceptor wssIn = new WSS4JInInterceptor(inProps);
 			endpoint.getInInterceptors().add(wssIn);
 
