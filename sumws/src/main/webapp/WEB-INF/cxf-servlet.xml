@@ -11,43 +11,57 @@
 		<jaxws:serviceBean>
 			<bean class="sumws.ws.SumWSImpl"></bean>
 		</jaxws:serviceBean>
-		
+
 		<jaxws:inInterceptors>
-			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
-			<constructor-arg>
-				<map>
-					<entry key="action" value="UsernameToken Encrypt Signature Timestamp"></entry>
-					<entry key="passwordType" value="PasswordText"></entry>
-					<entry key="passwordCallbackRef" value-ref="myPasswordCallback"></entry>
-					<entry key="decryptionPropFile" value="etc/serviceKeystore.properties"></entry>
-					<entry key="signaturePropFile" value="etc/serviceKeystore.properties"></entry>
-				</map> 
-			</constructor-arg>
+			<bean
+				class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action"
+							value="UsernameToken Encrypt Signature Timestamp"></entry>
+						<entry key="passwordType" value="PasswordText"></entry>
+						<entry key="passwordCallbackRef"
+							value-ref="myPasswordCallback"></entry>
+						<entry key="decryptionPropFile"
+							value="etc/serviceKeystore.properties"></entry>
+						<entry key="signaturePropFile"
+							value="etc/serviceKeystore.properties"></entry>
+					</map>
+				</constructor-arg>
 			</bean>
 		</jaxws:inInterceptors>
-		
+
 		<jaxws:outInterceptors>
-			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
-			<constructor-arg>
-				<map>
-					<entry key="action" value="Signature Encrypt Timestamp"></entry>
-					<entry key="passwordCallbackRef" value-ref="myPasswordCallback"></entry>
-					<entry key="encryptionPropFile" value="etc/serviceKeystore.properties"></entry>
-					<entry key="encryptionUser" value="myclientkey"></entry>
-					<entry key="encryptionParts" value="{Element}{http://www.w3.org/2000/09/xmldsig#}Signature;{Content}{http://schemas.xmlsoap.org/soap/envelope/}Body"></entry>
-					<entry key="signaturePropFile" value="etc/serviceKeystore.properties"></entry>
-					<entry key="signatureUser" value="myservicekey"></entry>
-				</map> 
-			</constructor-arg>
+			<bean
+				class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action" value="Timestamp Signature Encrypt"></entry>
+						<entry key="passwordCallbackRef"
+							value-ref="myPasswordCallback"></entry>
+						<entry key="encryptionPropFile"
+							value="etc/serviceKeystore.properties"></entry>
+						<entry key="encryptionUser" value="myclientkey"></entry>
+						<entry key="encryptionParts"
+							value="{Element}{http://www.w3.org/2000/09/xmldsig#}Signature;{Content}{http://schemas.xmlsoap.org/soap/envelope/}Body"></entry>
+						<entry key="signaturePropFile"
+							value="etc/serviceKeystore.properties"></entry>
+						<entry key="signatureUser" value="myservicekey"></entry>
+						<entry key="signatureParts"
+							value="{Element}{http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd}Timestamp;{Element}{http://schemas.xmlsoap.org/soap/envelope/}Body"></entry>
+
+					</map>
+				</constructor-arg>
 			</bean>
 		</jaxws:outInterceptors>
 	</jaxws:server>
-	
-	<bean id="myPasswordCallback" class="sumws.ws.PasswordCallbackHandler"></bean>
-	
+
+	<bean id="myPasswordCallback"
+		class="sumws.ws.PasswordCallbackHandler"></bean>
+
 	<cxf:bus>
 		<cxf:features>
-			<cxf:logging/>
+			<cxf:logging />
 		</cxf:features>
 	</cxf:bus>
 

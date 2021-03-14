@@ -33,7 +33,7 @@ public class SumWsTest {
 			Endpoint endpoint = client.getEndpoint();
 
 			HashMap<String, Object> outProps = new HashMap<>();
-			outProps.put(WSHandlerConstants.ACTION, "UsernameToken Signature Encrypt Timestamp");
+			outProps.put(WSHandlerConstants.ACTION, "UsernameToken Timestamp Signature Encrypt");
 			outProps.put(WSHandlerConstants.USER, "sumuser");
 			outProps.put(WSHandlerConstants.PASSWORD_TYPE, WSConstants.PW_TEXT);
 			outProps.put(WSHandlerConstants.PW_CALLBACK_CLASS, PasswordCallbackHandler.class.getName());
@@ -44,6 +44,8 @@ public class SumWsTest {
 					"{Element}{http://www.w3.org/2000/09/xmldsig#}Signature;{Content}{http://schemas.xmlsoap.org/soap/envelope/}Body");
 			outProps.put(WSHandlerConstants.SIGNATURE_USER, "myclientkey");
 			outProps.put(WSHandlerConstants.SIG_PROP_FILE, "etc/clientKeystore.properties");
+			outProps.put(WSHandlerConstants.SIGNATURE_PARTS,
+					"{Element}{http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd}Timestamp;{Element}{http://schemas.xmlsoap.org/soap/envelope/}Body");
 
 			outProps.put("timeToLive", "30");
 
