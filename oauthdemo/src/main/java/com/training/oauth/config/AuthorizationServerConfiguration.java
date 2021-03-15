@@ -19,6 +19,8 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Configuration
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
+	private static final String RESOURCE_ID = "myrestservice";
+
 	TokenStore tokenStore = new InMemoryTokenStore();
 
 	@Autowired
@@ -37,10 +39,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory().withClient("myclientapp").authorizedGrantTypes("password","referesh_token").scopes("read","write").secret("9999");
-		super.configure(clients);
+		clients.inMemory().withClient("myclientapp").authorizedGrantTypes("password", "referesh_token")
+				.scopes("read", "write").secret("9999").resourceIds(RESOURCE_ID);
 	}
-	
+
 	@Bean
 	@Primary
 	public DefaultTokenServices tokenServices() {
