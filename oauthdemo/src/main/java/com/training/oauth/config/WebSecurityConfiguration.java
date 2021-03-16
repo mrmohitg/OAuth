@@ -8,18 +8,18 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.training.oauth.services.CustomeUserDetailsService;
+import com.training.oauth.services.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private CustomeUserDetailsService customeUserDetailsService;
+	CustomUserDetailsService userDetailsService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customeUserDetailsService);
+		auth.userDetailsService(userDetailsService);
 	}
 	
 	@Override

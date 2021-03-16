@@ -16,6 +16,8 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
+import com.training.oauth.services.CustomUserDetailsService;
+
 @EnableAuthorizationServer
 @Configuration
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
@@ -29,7 +31,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	AuthenticationManager authenticationManager;
 
 	@Autowired
-	UserDetailsService userDetailsService;
+	CustomUserDetailsService userDetailsService;
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {

@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.training.oauth.data.entities.User;
 import com.training.oauth.data.repo.UserRepository;
 
-public class CustomeUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
